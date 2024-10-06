@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.Properties.Resources.resources
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.View.ClaseDetailsView.resources
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.csproj.GenerateResource.cache
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\SistemaGimnasio.exe.config
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\SistemaGimnasio.exe
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\SistemaGimnasio.pdb
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.exe
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.pdb
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.View.MainViewClases.resources
