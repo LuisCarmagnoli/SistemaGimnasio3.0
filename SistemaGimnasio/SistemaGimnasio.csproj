@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogicLayer.cs" />
     <Compile Include="Clase.cs" />
+    <Compile Include="Usuario.cs" />
     <Compile Include="DataAccessLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,11 +59,18 @@
     <Compile Include="ClaseDetailsView.Designer.cs">
       <DependentUpon>ClaseDetailsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainViewClases.cs">
+    <Compile Include="Reserva.cs" />
+    <Compile Include="VistaAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainViewClases.Designer.cs">
-      <DependentUpon>MainViewClases.cs</DependentUpon>
+    <Compile Include="VistaAdministrador.Designer.cs">
+      <DependentUpon>VistaAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaSocio.Designer.cs">
+      <DependentUpon>VistaSocio.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,10 +84,15 @@
     <EmbeddedResource Include="ClaseDetailsView.resx">
       <DependentUpon>ClaseDetailsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainViewClases.resx">
-      <DependentUpon>MainViewClases.cs</DependentUpon>
+    <EmbeddedResource Include="VistaAdministrador.resx">
+      <DependentUpon>VistaAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaSocio.resx">
+      <DependentUpon>VistaSocio.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Clase.datasource" />
+    <None Include="Properties\DataSources\Reserva.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

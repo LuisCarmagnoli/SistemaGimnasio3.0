@@ -26,13 +26,13 @@ namespace SistemaGimnasio.View
             InitializeComponent();
             _businessLogicLayer = new BusinessLogicLayer();
 
+
             // Rellenar los TextBox con los datos de la clase recibida
             txtNombreClase.Text = clase.NombreClase;
             txtNombreInstructor.Text = clase.NombreInstructor;
             txtDias.Text = clase.Dias;
             txtHorario.Text = clase.Horario;
             txtCapacidad.Text = clase.Capacidad.ToString();
-            txtEspaciosDisponibles.Text = clase.EspaciosDisponibles.ToString();
 
             // Almacenar el ID de la clase para la actualización
             IdClase = clase.IdClase;
@@ -47,7 +47,7 @@ namespace SistemaGimnasio.View
         {
             GuardarClase();
             this.Close();
-            ((MainViewClases)this.Owner).PopulateClases();
+            ((VistaAdministrador)this.Owner).PopulateClases();
         }
 
         private void GuardarClase()
@@ -59,10 +59,8 @@ namespace SistemaGimnasio.View
                 NombreInstructor = txtNombreInstructor.Text,
                 Dias = txtDias.Text,
                 Horario = txtHorario.Text,
-                Capacidad = int.Parse(txtCapacidad.Text),
-                EspaciosDisponibles = int.Parse(txtEspaciosDisponibles.Text)
+                Capacidad = int.Parse(txtCapacidad.Text)
             };
-
             _businessLogicLayer.GuardarClase(clase);
         }
     }

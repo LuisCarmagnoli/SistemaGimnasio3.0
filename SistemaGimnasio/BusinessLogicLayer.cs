@@ -30,6 +30,15 @@ namespace SistemaGimnasio
             _dataAccessLayer.DeleteClase(idClase);
         }
 
+        public void ReservarLugar(Reserva reserva, int idUsuario)
+        {
+            _dataAccessLayer.ReservarLugar(reserva, idUsuario);
+        }
+        public void CancelarReserva(Reserva reserva, int idUsuario)
+        {
+            _dataAccessLayer.CancelarReserva(reserva, idUsuario);
+        }
+
         public List<Clase> GetClases()
         {
             return _dataAccessLayer.GetClases();
@@ -38,6 +47,16 @@ namespace SistemaGimnasio
         public List<Clase> SearchClases(string searchTerm)
         {
             return _dataAccessLayer.SearchClases(searchTerm);
+        }
+
+        public List<Reserva> GetReservas(int idUsuario)
+        {
+            return _dataAccessLayer.GetReservas(idUsuario);
+        }
+
+        public List<Reserva> SearchReservas(string searchTerm, int idUsuario)
+        {
+            return _dataAccessLayer.SearchReservas(searchTerm, idUsuario);
         }
     }
 }

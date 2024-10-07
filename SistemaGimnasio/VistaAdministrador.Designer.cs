@@ -1,6 +1,6 @@
 ﻿namespace SistemaGimnasio.View
 {
-    partial class MainViewClases
+    partial class VistaAdministrador
     {
         /// <summary>
         /// Required designer variable.
@@ -64,7 +64,6 @@
             this.label1.Size = new System.Drawing.Size(93, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "CLASES";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel1
             // 
@@ -101,7 +100,6 @@
             this.label2.Size = new System.Drawing.Size(118, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "Buscar clase:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnBorrar
             // 
@@ -153,7 +151,6 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(677, 20);
             this.txtBuscar.TabIndex = 1;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // gridClases
             // 
@@ -225,15 +222,15 @@
             // 
             this.claseBindingSource.DataSource = typeof(SistemaGimnasio.Clase);
             // 
-            // MainViewClases
+            // VistaAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 440);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "MainViewClases";
-            this.Text = "ClaseView";
+            this.Name = "VistaAdministrador";
+            this.Text = "Sistema Gimnasio";
             this.Load += new System.EventHandler(this.MainView_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

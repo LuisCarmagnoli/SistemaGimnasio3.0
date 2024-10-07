@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SistemaGimnasio.View
 {
-    public partial class MainViewClases : Form
+    public partial class VistaAdministrador : Form
     {
         private BusinessLogicLayer _businessLogicLayer;
-        public MainViewClases()
+        public VistaAdministrador()
         {
             InitializeComponent();
             _businessLogicLayer = new BusinessLogicLayer();
@@ -40,7 +40,7 @@ namespace SistemaGimnasio.View
             {
                 // Obtener la clase seleccionada
                 Clase claseSeleccionada = (Clase)gridClases.SelectedRows[0].DataBoundItem;
-
+                
                 // Abrir la ventana de detalles de clase con los datos de la clase seleccionada
                 ClaseDetailsView claseDetailsView = new ClaseDetailsView(claseSeleccionada);
                 claseDetailsView.ShowDialog(this);
@@ -123,20 +123,5 @@ namespace SistemaGimnasio.View
         }
 
         #endregion
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

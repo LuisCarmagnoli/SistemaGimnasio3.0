@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,22 +36,11 @@
             this.txtNombreInstructor = new System.Windows.Forms.TextBox();
             this.txtDias = new System.Windows.Forms.TextBox();
             this.txtHorario = new System.Windows.Forms.TextBox();
-            this.txtEspaciosDisponibles = new System.Windows.Forms.TextBox();
             this.txtCapacidad = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(30, 222);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 18);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Espacios disponibles:";
             // 
             // label5
             // 
@@ -108,19 +96,19 @@
             this.txtNombreInstructor.Size = new System.Drawing.Size(196, 20);
             this.txtNombreInstructor.TabIndex = 17;
             // 
+            // txtDias
+            // 
+            this.txtDias.Location = new System.Drawing.Point(197, 113);
+            this.txtDias.Name = "txtDias";
+            this.txtDias.Size = new System.Drawing.Size(196, 20);
+            this.txtDias.TabIndex = 24;
+            // 
             // txtHorario
             // 
             this.txtHorario.Location = new System.Drawing.Point(197, 151);
             this.txtHorario.Name = "txtHorario";
             this.txtHorario.Size = new System.Drawing.Size(196, 20);
             this.txtHorario.TabIndex = 16;
-            // 
-            // txtEspaciosDisponibles
-            // 
-            this.txtEspaciosDisponibles.Location = new System.Drawing.Point(197, 223);
-            this.txtEspaciosDisponibles.Name = "txtEspaciosDisponibles";
-            this.txtEspaciosDisponibles.Size = new System.Drawing.Size(196, 20);
-            this.txtEspaciosDisponibles.TabIndex = 15;
             // 
             // txtCapacidad
             // 
@@ -131,7 +119,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(219, 265);
+            this.btnCancelar.Location = new System.Drawing.Point(219, 227);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(174, 31);
             this.btnCancelar.TabIndex = 13;
@@ -141,20 +129,13 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(33, 265);
+            this.btnGuardar.Location = new System.Drawing.Point(33, 227);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(169, 31);
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // txtDias
-            // 
-            this.txtDias.Location = new System.Drawing.Point(197, 113);
-            this.txtDias.Name = "txtDias";
-            this.txtDias.Size = new System.Drawing.Size(196, 20);
-            this.txtDias.TabIndex = 24;
             // 
             // label1
             // 
@@ -170,9 +151,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 331);
+            this.ClientSize = new System.Drawing.Size(433, 286);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -181,7 +161,6 @@
             this.Controls.Add(this.txtNombreInstructor);
             this.Controls.Add(this.txtDias);
             this.Controls.Add(this.txtHorario);
-            this.Controls.Add(this.txtEspaciosDisponibles);
             this.Controls.Add(this.txtCapacidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
@@ -193,8 +172,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -203,7 +180,6 @@
         private System.Windows.Forms.TextBox txtNombreInstructor;
         private System.Windows.Forms.TextBox txtDias;
         private System.Windows.Forms.TextBox txtHorario;
-        private System.Windows.Forms.TextBox txtEspaciosDisponibles;
         private System.Windows.Forms.TextBox txtCapacidad;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
