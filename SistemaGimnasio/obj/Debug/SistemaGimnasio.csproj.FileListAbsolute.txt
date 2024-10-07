@@ -11,3 +11,4 @@ C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.pdb
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.View.VistaAdministrador.resources
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.VistaSocio.resources
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.Login.resources

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaAdministrador));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -167,6 +168,7 @@
             this.gridClases.DataSource = this.claseBindingSource1;
             this.gridClases.Location = new System.Drawing.Point(12, 60);
             this.gridClases.Name = "gridClases";
+            this.gridClases.ReadOnly = true;
             this.gridClases.Size = new System.Drawing.Size(783, 319);
             this.gridClases.TabIndex = 0;
             this.gridClases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClases_CellClick);
@@ -176,6 +178,7 @@
             this.Dias.DataPropertyName = "Dias";
             this.Dias.HeaderText = "Dias";
             this.Dias.Name = "Dias";
+            this.Dias.ReadOnly = true;
             this.Dias.Width = 140;
             // 
             // idClaseDataGridViewTextBoxColumn
@@ -183,36 +186,42 @@
             this.idClaseDataGridViewTextBoxColumn.DataPropertyName = "IdClase";
             this.idClaseDataGridViewTextBoxColumn.HeaderText = "IdClase";
             this.idClaseDataGridViewTextBoxColumn.Name = "idClaseDataGridViewTextBoxColumn";
+            this.idClaseDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nombreClaseDataGridViewTextBoxColumn
             // 
             this.nombreClaseDataGridViewTextBoxColumn.DataPropertyName = "NombreClase";
             this.nombreClaseDataGridViewTextBoxColumn.HeaderText = "NombreClase";
             this.nombreClaseDataGridViewTextBoxColumn.Name = "nombreClaseDataGridViewTextBoxColumn";
+            this.nombreClaseDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nombreInstructorDataGridViewTextBoxColumn
             // 
             this.nombreInstructorDataGridViewTextBoxColumn.DataPropertyName = "NombreInstructor";
             this.nombreInstructorDataGridViewTextBoxColumn.HeaderText = "NombreInstructor";
             this.nombreInstructorDataGridViewTextBoxColumn.Name = "nombreInstructorDataGridViewTextBoxColumn";
+            this.nombreInstructorDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // horarioDataGridViewTextBoxColumn
             // 
             this.horarioDataGridViewTextBoxColumn.DataPropertyName = "Horario";
             this.horarioDataGridViewTextBoxColumn.HeaderText = "Horario";
             this.horarioDataGridViewTextBoxColumn.Name = "horarioDataGridViewTextBoxColumn";
+            this.horarioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // capacidadDataGridViewTextBoxColumn
             // 
             this.capacidadDataGridViewTextBoxColumn.DataPropertyName = "Capacidad";
             this.capacidadDataGridViewTextBoxColumn.HeaderText = "Capacidad";
             this.capacidadDataGridViewTextBoxColumn.Name = "capacidadDataGridViewTextBoxColumn";
+            this.capacidadDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // espaciosDisponiblesDataGridViewTextBoxColumn
             // 
             this.espaciosDisponiblesDataGridViewTextBoxColumn.DataPropertyName = "EspaciosDisponibles";
             this.espaciosDisponiblesDataGridViewTextBoxColumn.HeaderText = "EspaciosDisponibles";
             this.espaciosDisponiblesDataGridViewTextBoxColumn.Name = "espaciosDisponiblesDataGridViewTextBoxColumn";
+            this.espaciosDisponiblesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // claseBindingSource1
             // 
@@ -229,9 +238,11 @@
             this.ClientSize = new System.Drawing.Size(909, 440);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VistaAdministrador";
-            this.Text = "Sistema Gimnasio";
-            this.Load += new System.EventHandler(this.MainView_Load);
+            this.Text = "Sistema Gimnasio - Vista Administrador";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VistaAdministrador_FormClosing);
+            this.Load += new System.EventHandler(this.VistaAdministrador_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -1,21 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SistemaGimnasio
 {
     public class DataAccessLayer
     {
         private SqlConnection connection = new SqlConnection("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SistemaGimnasio;Data Source=DESKTOP-PP0K0MS");
+        private bool condition = true;
 
         public void InsertClase(Clase clase)
         {
             try
             {
+                // Validar que el nombre de la clase esté entre 3 y 50 caracteres
+                if (string.IsNullOrWhiteSpace(clase.NombreClase) || clase.NombreClase.Length < 3 || clase.NombreClase.Length > 50)
+                {
+                    MessageBox.Show("El nombre de la clase debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar que el nombre del instructor esté entre 3 y 50 caracteres
+                if (string.IsNullOrWhiteSpace(clase.NombreInstructor) || clase.NombreInstructor.Length < 3 || clase.NombreInstructor.Length > 50)
+                {
+                    MessageBox.Show("El nombre del instructor debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar que los días estén entre 5 y 100 caracteres
+                if (string.IsNullOrWhiteSpace(clase.Dias) || clase.Dias.Length < 5 || clase.Dias.Length > 100)
+                {
+                    MessageBox.Show("Los días deben tener entre 5 y 100 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar que el horario sea un formato TIME válido
+                if (!ValidarHorario(clase.Horario))
+                {
+                    MessageBox.Show("Por favor, ingresa un horario válido en formato HH:MM:SS.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método si el formato es incorrecto
+                }
+
+                TimeSpan horario = TimeSpan.Parse(clase.Horario);
+
+                // Validar que la capacidad sea un número entre 1 y 100
+                if (clase.Capacidad < 1 || clase.Capacidad > 100)
+                {
+                    MessageBox.Show("La capacidad debe ser un número entre 1 y 100.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
                 connection.Open();
                 string query = @"
                                 INSERT INTO Clases(Nombre_Clase, Instructor, Dias, Horario, Capacidad, Espacios_Disponibles)
@@ -25,7 +67,7 @@ namespace SistemaGimnasio
                 SqlParameter nombreClase = new SqlParameter("@NombreClase", clase.NombreClase);
                 SqlParameter nombreInstructor = new SqlParameter("@NombreInstructor", clase.NombreInstructor);
                 SqlParameter dias = new SqlParameter("@Dias", clase.Dias);
-                SqlParameter horario = new SqlParameter("@Horario", clase.Horario);
+                SqlParameter horarioParam = new SqlParameter("@Horario", horario);
                 SqlParameter capacidad = new SqlParameter("@Capacidad", clase.Capacidad);
                 SqlParameter espaciosDisponibles = new SqlParameter("@EspaciosDisponibles", clase.EspaciosDisponibles);
 
@@ -33,7 +75,7 @@ namespace SistemaGimnasio
                 command.Parameters.Add(nombreClase);
                 command.Parameters.Add(nombreInstructor);
                 command.Parameters.Add(dias);
-                command.Parameters.Add(horario);
+                command.Parameters.Add(horarioParam);
                 command.Parameters.Add(capacidad);
 
                 // Ejecutar el comando e obtener el ID de la nueva clase
@@ -65,16 +107,27 @@ namespace SistemaGimnasio
                     commandReserva.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
+            catch (FormatException ex)
             {
-
-                throw;
+                MessageBox.Show("El formato del horario es incorrecto. Asegúrate de usar el formato HH:MM:SS.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 connection.Close();
+                
             }
         }
+
+        private bool ValidarHorario(string horario)
+        {
+            // Intenta analizar el horario a TimeSpan
+            return TimeSpan.TryParse(horario, out _);
+        }
+
 
         public void UpdateClase(Clase clase)
         {
@@ -358,74 +411,95 @@ namespace SistemaGimnasio
 
         public void ReservarLugar(Reserva reserva, int idUsuario)
         {
-            try
+            if (reserva.EspaciosDisponibles > 0)
             {
-                connection.Open();
-                string query = @"
+                if (reserva.Estado != "Reservado")
+                {
+                    try
+                    {
+                        connection.Open();
+                        string query = @"
                                 UPDATE Reservas
                                 SET Estado = 'Reservado'
                                 WHERE ID_Usuario = @idUsuario AND ID_Reserva = @idReserva";
 
-                SqlCommand command = new SqlCommand(query, connection);
+                        SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
-                command.Parameters.AddWithValue("@idReserva", reserva.IdReserva);
-                command.Parameters.AddWithValue("@Estado", reserva.Estado);
-                command.ExecuteNonQuery();
+                        command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        command.Parameters.AddWithValue("@idReserva", reserva.IdReserva);
+                        command.Parameters.AddWithValue("@Estado", reserva.Estado);
+                        command.ExecuteNonQuery();
 
-                string updateClaseQuery = @"
+                        string updateClaseQuery = @"
                                 UPDATE Clases
                                 SET Espacios_Disponibles = Espacios_Disponibles - 1
                                 WHERE ID_Clase = @idClase";
 
-                SqlCommand commandClase = new SqlCommand(updateClaseQuery, connection);
-                commandClase.Parameters.AddWithValue("@idClase", reserva.IdClase); //
-                commandClase.ExecuteNonQuery();
+                        SqlCommand commandClase = new SqlCommand(updateClaseQuery, connection);
+                        commandClase.Parameters.AddWithValue("@idClase", reserva.IdClase); //
+                        commandClase.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede reservar el lugar porque ya está reservado.");
+                }
             }
-            catch (Exception)
+            else
             {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
+                MessageBox.Show("No se puede reservar porque no hay espacios disponibles.");
             }
         }
 
         public void CancelarReserva(Reserva reserva, int idUsuario)
         {
-            try
+            if (reserva.Estado != "No reservado")
             {
-                connection.Open();
-                string query = @"
+                try
+                {
+                    connection.Open();
+                    string query = @"
                         UPDATE Reservas
                         SET Estado = 'No reservado'
                         WHERE ID_Usuario = @idUsuario AND ID_Reserva = @idReserva";
 
-                SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
-                command.Parameters.AddWithValue("@idReserva", reserva.IdReserva);
-                command.Parameters.AddWithValue("@Estado", reserva.Estado);
+                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    command.Parameters.AddWithValue("@idReserva", reserva.IdReserva);
+                    command.Parameters.AddWithValue("@Estado", reserva.Estado);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
-                string updateClaseQuery = @"
+                    string updateClaseQuery = @"
                                 UPDATE Clases
                                 SET Espacios_Disponibles = Espacios_Disponibles + 1
                                 WHERE ID_Clase = @idClase";
 
-                SqlCommand commandClase = new SqlCommand(updateClaseQuery, connection);
-                commandClase.Parameters.AddWithValue("@idClase", reserva.IdClase); //
-                commandClase.ExecuteNonQuery();
+                    SqlCommand commandClase = new SqlCommand(updateClaseQuery, connection);
+                    commandClase.Parameters.AddWithValue("@idClase", reserva.IdClase); //
+                    commandClase.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
-            catch (Exception)
+            else
             {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
+                MessageBox.Show("No se puede cancelar la reserva ya que no has reservado un lugar aún.");
             }
         }
     }

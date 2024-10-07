@@ -45,23 +45,34 @@ namespace SistemaGimnasio.View
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GuardarClase();
-            this.Close();
-            ((VistaAdministrador)this.Owner).PopulateClases();
+            if (GuardarClase())
+            {
+                this.Close();
+                ((VistaAdministrador)this.Owner).PopulateClases();
+            }
         }
 
-        private void GuardarClase()
+        private bool GuardarClase()
         {
-            Clase clase = new Clase
+            try
             {
-                IdClase = IdClase,
-                NombreClase = txtNombreClase.Text,
-                NombreInstructor = txtNombreInstructor.Text,
-                Dias = txtDias.Text,
-                Horario = txtHorario.Text,
-                Capacidad = int.Parse(txtCapacidad.Text)
-            };
-            _businessLogicLayer.GuardarClase(clase);
+                Clase clase = new Clase
+                {
+                    IdClase = IdClase,
+                    NombreClase = txtNombreClase.Text,
+                    NombreInstructor = txtNombreInstructor.Text,
+                    Dias = txtDias.Text,
+                    Horario = txtHorario.Text,
+                    Capacidad = int.Parse(txtCapacidad.Text)
+                };
+                _businessLogicLayer.GuardarClase(clase);
+                return true; // Indicar que se guardó correctamente
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // Indicar que hubo un error
+            }
         }
     }
 }

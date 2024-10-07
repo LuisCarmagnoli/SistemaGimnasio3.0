@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaSocio));
             this.label2 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.gridReservas = new System.Windows.Forms.DataGridView();
             this.NombreClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreInstructor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,8 +41,6 @@
             this.Capacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EspaciosDisponibles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReservarLugar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.idReservaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idClaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idUsuarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +52,8 @@
             this.capacidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.espaciosDisponiblesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reservaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnReservarLugar = new System.Windows.Forms.Button();
+            this.btnCancelarReserva = new System.Windows.Forms.Button();
             this.reservaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.claseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridReservas)).BeginInit();
@@ -90,16 +90,6 @@
             this.txtBuscar.Size = new System.Drawing.Size(645, 20);
             this.txtBuscar.TabIndex = 9;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 25);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "CLASES";
-            // 
             // gridReservas
             // 
             this.gridReservas.AutoGenerateColumns = false;
@@ -125,45 +115,52 @@
             this.gridReservas.DataSource = this.reservaBindingSource1;
             this.gridReservas.Location = new System.Drawing.Point(11, 63);
             this.gridReservas.Name = "gridReservas";
+            this.gridReservas.ReadOnly = true;
             this.gridReservas.Size = new System.Drawing.Size(751, 319);
             this.gridReservas.TabIndex = 7;
-            this.gridReservas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReservas_CellClick_1);
+            this.gridReservas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReservas_CellClick);
             // 
             // NombreClase
             // 
             this.NombreClase.DataPropertyName = "NombreClase";
             this.NombreClase.HeaderText = "Clase";
             this.NombreClase.Name = "NombreClase";
+            this.NombreClase.ReadOnly = true;
             // 
             // NombreInstructor
             // 
             this.NombreInstructor.DataPropertyName = "NombreInstructor";
             this.NombreInstructor.HeaderText = "Instructor";
             this.NombreInstructor.Name = "NombreInstructor";
+            this.NombreInstructor.ReadOnly = true;
             // 
             // Dias
             // 
             this.Dias.DataPropertyName = "Dias";
             this.Dias.HeaderText = "Dias";
             this.Dias.Name = "Dias";
+            this.Dias.ReadOnly = true;
             // 
             // Horario
             // 
             this.Horario.DataPropertyName = "Horario";
             this.Horario.HeaderText = "Horario";
             this.Horario.Name = "Horario";
+            this.Horario.ReadOnly = true;
             // 
             // Capacidad
             // 
             this.Capacidad.DataPropertyName = "Capacidad";
             this.Capacidad.HeaderText = "Capacidad";
             this.Capacidad.Name = "Capacidad";
+            this.Capacidad.ReadOnly = true;
             // 
             // EspaciosDisponibles
             // 
             this.EspaciosDisponibles.DataPropertyName = "EspaciosDisponibles";
             this.EspaciosDisponibles.HeaderText = "EspaciosDisponible";
             this.EspaciosDisponibles.Name = "EspaciosDisponibles";
+            this.EspaciosDisponibles.ReadOnly = true;
             this.EspaciosDisponibles.Width = 110;
             // 
             // Estado
@@ -171,6 +168,81 @@
             this.Estado.DataPropertyName = "Estado";
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // idReservaDataGridViewTextBoxColumn
+            // 
+            this.idReservaDataGridViewTextBoxColumn.DataPropertyName = "IdReserva";
+            this.idReservaDataGridViewTextBoxColumn.HeaderText = "IdReserva";
+            this.idReservaDataGridViewTextBoxColumn.Name = "idReservaDataGridViewTextBoxColumn";
+            this.idReservaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idClaseDataGridViewTextBoxColumn
+            // 
+            this.idClaseDataGridViewTextBoxColumn.DataPropertyName = "IdClase";
+            this.idClaseDataGridViewTextBoxColumn.HeaderText = "IdClase";
+            this.idClaseDataGridViewTextBoxColumn.Name = "idClaseDataGridViewTextBoxColumn";
+            this.idClaseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idUsuarioDataGridViewTextBoxColumn
+            // 
+            this.idUsuarioDataGridViewTextBoxColumn.DataPropertyName = "IdUsuario";
+            this.idUsuarioDataGridViewTextBoxColumn.HeaderText = "IdUsuario";
+            this.idUsuarioDataGridViewTextBoxColumn.Name = "idUsuarioDataGridViewTextBoxColumn";
+            this.idUsuarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estadoDataGridViewTextBoxColumn
+            // 
+            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
+            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreClaseDataGridViewTextBoxColumn
+            // 
+            this.nombreClaseDataGridViewTextBoxColumn.DataPropertyName = "NombreClase";
+            this.nombreClaseDataGridViewTextBoxColumn.HeaderText = "NombreClase";
+            this.nombreClaseDataGridViewTextBoxColumn.Name = "nombreClaseDataGridViewTextBoxColumn";
+            this.nombreClaseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreInstructorDataGridViewTextBoxColumn
+            // 
+            this.nombreInstructorDataGridViewTextBoxColumn.DataPropertyName = "NombreInstructor";
+            this.nombreInstructorDataGridViewTextBoxColumn.HeaderText = "NombreInstructor";
+            this.nombreInstructorDataGridViewTextBoxColumn.Name = "nombreInstructorDataGridViewTextBoxColumn";
+            this.nombreInstructorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // diasDataGridViewTextBoxColumn
+            // 
+            this.diasDataGridViewTextBoxColumn.DataPropertyName = "Dias";
+            this.diasDataGridViewTextBoxColumn.HeaderText = "Dias";
+            this.diasDataGridViewTextBoxColumn.Name = "diasDataGridViewTextBoxColumn";
+            this.diasDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // horarioDataGridViewTextBoxColumn
+            // 
+            this.horarioDataGridViewTextBoxColumn.DataPropertyName = "Horario";
+            this.horarioDataGridViewTextBoxColumn.HeaderText = "Horario";
+            this.horarioDataGridViewTextBoxColumn.Name = "horarioDataGridViewTextBoxColumn";
+            this.horarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // capacidadDataGridViewTextBoxColumn
+            // 
+            this.capacidadDataGridViewTextBoxColumn.DataPropertyName = "Capacidad";
+            this.capacidadDataGridViewTextBoxColumn.HeaderText = "Capacidad";
+            this.capacidadDataGridViewTextBoxColumn.Name = "capacidadDataGridViewTextBoxColumn";
+            this.capacidadDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // espaciosDisponiblesDataGridViewTextBoxColumn
+            // 
+            this.espaciosDisponiblesDataGridViewTextBoxColumn.DataPropertyName = "EspaciosDisponibles";
+            this.espaciosDisponiblesDataGridViewTextBoxColumn.HeaderText = "EspaciosDisponibles";
+            this.espaciosDisponiblesDataGridViewTextBoxColumn.Name = "espaciosDisponiblesDataGridViewTextBoxColumn";
+            this.espaciosDisponiblesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // reservaBindingSource1
+            // 
+            this.reservaBindingSource1.DataSource = typeof(SistemaGimnasio.Reserva);
             // 
             // btnReservarLugar
             // 
@@ -183,80 +255,16 @@
             this.btnReservarLugar.UseVisualStyleBackColor = true;
             this.btnReservarLugar.Click += new System.EventHandler(this.btnReservarLugar_Click);
             // 
-            // button1
+            // btnCancelarReserva
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(768, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 64);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Cancelar reserva";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // idReservaDataGridViewTextBoxColumn
-            // 
-            this.idReservaDataGridViewTextBoxColumn.DataPropertyName = "IdReserva";
-            this.idReservaDataGridViewTextBoxColumn.HeaderText = "IdReserva";
-            this.idReservaDataGridViewTextBoxColumn.Name = "idReservaDataGridViewTextBoxColumn";
-            // 
-            // idClaseDataGridViewTextBoxColumn
-            // 
-            this.idClaseDataGridViewTextBoxColumn.DataPropertyName = "IdClase";
-            this.idClaseDataGridViewTextBoxColumn.HeaderText = "IdClase";
-            this.idClaseDataGridViewTextBoxColumn.Name = "idClaseDataGridViewTextBoxColumn";
-            // 
-            // idUsuarioDataGridViewTextBoxColumn
-            // 
-            this.idUsuarioDataGridViewTextBoxColumn.DataPropertyName = "IdUsuario";
-            this.idUsuarioDataGridViewTextBoxColumn.HeaderText = "IdUsuario";
-            this.idUsuarioDataGridViewTextBoxColumn.Name = "idUsuarioDataGridViewTextBoxColumn";
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            // 
-            // nombreClaseDataGridViewTextBoxColumn
-            // 
-            this.nombreClaseDataGridViewTextBoxColumn.DataPropertyName = "NombreClase";
-            this.nombreClaseDataGridViewTextBoxColumn.HeaderText = "NombreClase";
-            this.nombreClaseDataGridViewTextBoxColumn.Name = "nombreClaseDataGridViewTextBoxColumn";
-            // 
-            // nombreInstructorDataGridViewTextBoxColumn
-            // 
-            this.nombreInstructorDataGridViewTextBoxColumn.DataPropertyName = "NombreInstructor";
-            this.nombreInstructorDataGridViewTextBoxColumn.HeaderText = "NombreInstructor";
-            this.nombreInstructorDataGridViewTextBoxColumn.Name = "nombreInstructorDataGridViewTextBoxColumn";
-            // 
-            // diasDataGridViewTextBoxColumn
-            // 
-            this.diasDataGridViewTextBoxColumn.DataPropertyName = "Dias";
-            this.diasDataGridViewTextBoxColumn.HeaderText = "Dias";
-            this.diasDataGridViewTextBoxColumn.Name = "diasDataGridViewTextBoxColumn";
-            // 
-            // horarioDataGridViewTextBoxColumn
-            // 
-            this.horarioDataGridViewTextBoxColumn.DataPropertyName = "Horario";
-            this.horarioDataGridViewTextBoxColumn.HeaderText = "Horario";
-            this.horarioDataGridViewTextBoxColumn.Name = "horarioDataGridViewTextBoxColumn";
-            // 
-            // capacidadDataGridViewTextBoxColumn
-            // 
-            this.capacidadDataGridViewTextBoxColumn.DataPropertyName = "Capacidad";
-            this.capacidadDataGridViewTextBoxColumn.HeaderText = "Capacidad";
-            this.capacidadDataGridViewTextBoxColumn.Name = "capacidadDataGridViewTextBoxColumn";
-            // 
-            // espaciosDisponiblesDataGridViewTextBoxColumn
-            // 
-            this.espaciosDisponiblesDataGridViewTextBoxColumn.DataPropertyName = "EspaciosDisponibles";
-            this.espaciosDisponiblesDataGridViewTextBoxColumn.HeaderText = "EspaciosDisponibles";
-            this.espaciosDisponiblesDataGridViewTextBoxColumn.Name = "espaciosDisponiblesDataGridViewTextBoxColumn";
-            // 
-            // reservaBindingSource1
-            // 
-            this.reservaBindingSource1.DataSource = typeof(SistemaGimnasio.Reserva);
+            this.btnCancelarReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarReserva.Location = new System.Drawing.Point(768, 132);
+            this.btnCancelarReserva.Name = "btnCancelarReserva";
+            this.btnCancelarReserva.Size = new System.Drawing.Size(100, 64);
+            this.btnCancelarReserva.TabIndex = 14;
+            this.btnCancelarReserva.Text = "Cancelar reserva";
+            this.btnCancelarReserva.UseVisualStyleBackColor = true;
+            this.btnCancelarReserva.Click += new System.EventHandler(this.btnCancelarReserva_Click);
             // 
             // reservaBindingSource
             // 
@@ -271,15 +279,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 390);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancelarReserva);
             this.Controls.Add(this.btnReservarLugar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.gridReservas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VistaSocio";
-            this.Text = "VistaSocio";
+            this.Text = "Sistema Gimnasio - Vista Socio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VistaSocio_FormClosing);
             this.Load += new System.EventHandler(this.VistaSocio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reservaBindingSource1)).EndInit();
@@ -295,12 +304,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gridReservas;
         private System.Windows.Forms.BindingSource claseBindingSource;
         private System.Windows.Forms.BindingSource reservaBindingSource;
         private System.Windows.Forms.Button btnReservarLugar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancelarReserva;
         private System.Windows.Forms.BindingSource reservaBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreClase;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreInstructor;

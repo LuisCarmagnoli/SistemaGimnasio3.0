@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,14 +24,21 @@ namespace SistemaGimnasio.View
         }
 
         #region EVENTS
-        private void MainView_Load(object sender, EventArgs e)
+        private void VistaAdministrador_Load(object sender, EventArgs e)
         {
             PopulateClases();
+
+            if (gridClases.Rows.Count > 0)
+            {
+                // Seleccionar la primera fila
+                gridClases.Rows[0].Selected = true;
+            }
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             OpenContactDetailsDialog();
+            gridClases.Rows[0].Selected = true;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -44,6 +52,18 @@ namespace SistemaGimnasio.View
                 // Abrir la ventana de detalles de clase con los datos de la clase seleccionada
                 ClaseDetailsView claseDetailsView = new ClaseDetailsView(claseSeleccionada);
                 claseDetailsView.ShowDialog(this);
+
+                // Después de cerrar el diálogo, restablecer la selección
+                int index = gridClases.Rows.Cast<DataGridViewRow>()
+                    .ToList() // Convierte a lista para evitar problemas de enumeración
+                    .FindIndex(r => r.DataBoundItem is Clase clase && clase.IdClase == claseSeleccionada.IdClase);
+
+                if (index >= 0)
+                {
+                    gridClases.ClearSelection(); // Limpiar selección actual
+                    gridClases.Rows[index].Selected = true; // Seleccionar la fila editada
+                    gridClases.FirstDisplayedScrollingRowIndex = index; // Desplazar si es necesario
+                }
             }
             else
             {
@@ -73,11 +93,15 @@ namespace SistemaGimnasio.View
                     // Actualizar el DataGridView
                     PopulateClases();
                 }
+
+                gridClases.Rows[0].Selected = true;
             }
             else
             {
                 MessageBox.Show("Por favor, seleccione una clase para borrar.");
             }
+
+            gridClases.Rows[0].Selected = true;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -123,5 +147,10 @@ namespace SistemaGimnasio.View
         }
 
         #endregion
+
+        private void VistaAdministrador_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

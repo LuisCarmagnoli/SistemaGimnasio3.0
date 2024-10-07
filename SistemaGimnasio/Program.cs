@@ -15,15 +15,9 @@ namespace SistemaGimnasio
         [STAThread]
         static void Main()
         {
-            Usuario usuario = new Usuario();
-            usuario.Rol = "Socio";
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (usuario.Rol == "Administrador")
-                Application.Run(new VistaAdministrador());
-            else
-                Application.Run(new VistaSocio());
+            Application.Run(new Login());
         }
     }
 }
