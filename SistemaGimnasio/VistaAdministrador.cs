@@ -14,6 +14,7 @@ namespace SistemaGimnasio.View
     public partial class VistaAdministrador : Form
     {
         private BusinessLogicLayer _businessLogicLayer;
+
         public VistaAdministrador()
         {
             InitializeComponent();
@@ -33,6 +34,11 @@ namespace SistemaGimnasio.View
                 // Seleccionar la primera fila
                 gridClases.Rows[0].Selected = true;
             }
+        }
+
+        private void VistaAdministrador_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
@@ -134,12 +140,12 @@ namespace SistemaGimnasio.View
         #endregion
 
         #region PRIVATE METHODS
-
         private void OpenContactDetailsDialog()
         {
             ClaseDetailsView claseDetailsView = new ClaseDetailsView();
             claseDetailsView.ShowDialog(this);
         }
+
         public void PopulateClases()
         {
             List<Clase> clases = _businessLogicLayer.GetClases();
@@ -148,9 +154,5 @@ namespace SistemaGimnasio.View
 
         #endregion
 
-        private void VistaAdministrador_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
     }
 }

@@ -14,7 +14,9 @@ namespace SistemaGimnasio
     public partial class VistaSocio : Form
     {
         private BusinessLogicLayer _businessLogicLayer;
+
         private readonly int idUsuario;
+
         public VistaSocio(int idUsuario)
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace SistemaGimnasio
 
         }
 
+        #region EVENTS
         private void VistaSocio_Load(object sender, EventArgs e)
         {
             PopulateReservas(idUsuario);
@@ -37,7 +40,6 @@ namespace SistemaGimnasio
             }
         }
 
-        #region EVENTS
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string searchTerm = txtBuscar.Text.Trim();
@@ -56,18 +58,6 @@ namespace SistemaGimnasio
                 PopulateReservas(idUsuario);
             }
         }
-
-        #endregion
-
-        #region PRIVATE METHODS
-
-        public void PopulateReservas(int idUsuario)
-        {
-            List<Reserva> reservas = _businessLogicLayer.GetReservas(idUsuario);
-            gridReservas.DataSource = reservas;
-        }
-
-        #endregion
 
         private void btnReservarLugar_Click(object sender, EventArgs e)
         {
@@ -122,6 +112,14 @@ namespace SistemaGimnasio
                 gridReservas.Rows[e.RowIndex].Selected = true;
             }
         }
+        #endregion
+
+        #region PRIVATE METHODS
+        public void PopulateReservas(int idUsuario)
+        {
+            List<Reserva> reservas = _businessLogicLayer.GetReservas(idUsuario);
+            gridReservas.DataSource = reservas;
+        }
 
         private void SelectReserva(Reserva reserva)
         {
@@ -136,5 +134,6 @@ namespace SistemaGimnasio
                 }
             }
         }
+        #endregion
     }
 }

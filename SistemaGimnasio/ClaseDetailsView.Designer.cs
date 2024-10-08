@@ -87,42 +87,42 @@
             this.txtNombreClase.Location = new System.Drawing.Point(197, 37);
             this.txtNombreClase.Name = "txtNombreClase";
             this.txtNombreClase.Size = new System.Drawing.Size(196, 20);
-            this.txtNombreClase.TabIndex = 18;
+            this.txtNombreClase.TabIndex = 20;
             // 
             // txtNombreInstructor
             // 
             this.txtNombreInstructor.Location = new System.Drawing.Point(197, 76);
             this.txtNombreInstructor.Name = "txtNombreInstructor";
             this.txtNombreInstructor.Size = new System.Drawing.Size(196, 20);
-            this.txtNombreInstructor.TabIndex = 17;
+            this.txtNombreInstructor.TabIndex = 21;
             // 
             // txtDias
             // 
             this.txtDias.Location = new System.Drawing.Point(197, 113);
             this.txtDias.Name = "txtDias";
             this.txtDias.Size = new System.Drawing.Size(196, 20);
-            this.txtDias.TabIndex = 24;
+            this.txtDias.TabIndex = 22;
             // 
             // txtHorario
             // 
             this.txtHorario.Location = new System.Drawing.Point(197, 151);
             this.txtHorario.Name = "txtHorario";
             this.txtHorario.Size = new System.Drawing.Size(196, 20);
-            this.txtHorario.TabIndex = 16;
+            this.txtHorario.TabIndex = 23;
             // 
             // txtCapacidad
             // 
             this.txtCapacidad.Location = new System.Drawing.Point(197, 187);
             this.txtCapacidad.Name = "txtCapacidad";
             this.txtCapacidad.Size = new System.Drawing.Size(196, 20);
-            this.txtCapacidad.TabIndex = 14;
+            this.txtCapacidad.TabIndex = 24;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(219, 227);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(174, 31);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -132,7 +132,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(33, 227);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(169, 31);
-            this.btnGuardar.TabIndex = 12;
+            this.btnGuardar.TabIndex = 25;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnAceptar_Click);

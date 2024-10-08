@@ -12,8 +12,9 @@ namespace SistemaGimnasio.View
 {
     public partial class ClaseDetailsView : Form
     {
-        private BusinessLogicLayer _businessLogicLayer;
         public int IdClase { get; set; }
+
+        private BusinessLogicLayer _businessLogicLayer;
 
         public ClaseDetailsView()
         {
@@ -65,13 +66,22 @@ namespace SistemaGimnasio.View
                     Horario = txtHorario.Text,
                     Capacidad = int.Parse(txtCapacidad.Text)
                 };
-                _businessLogicLayer.GuardarClase(clase);
-                return true; // Indicar que se guardó correctamente
+
+                bool resultado = _businessLogicLayer.GuardarClase(clase);
+                if (!resultado)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; // Indicar que hubo un error
+                return false;
             }
         }
     }

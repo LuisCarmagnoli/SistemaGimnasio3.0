@@ -16,13 +16,12 @@ namespace SistemaGimnasio
             _dataAccessLayer = new DataAccessLayer();
         }
 
-        public Clase GuardarClase(Clase clase)
+        public bool GuardarClase(Clase clase)
         {
             if (clase.IdClase == 0)
-                _dataAccessLayer.InsertClase(clase);
+                return _dataAccessLayer.InsertClase(clase);
             else
-                _dataAccessLayer.UpdateClase(clase); // Agregar llamada a método de actualización
-            return clase;
+                return _dataAccessLayer.UpdateClase(clase);
         }
 
         public void BorrarClase(int idClase)
@@ -34,6 +33,7 @@ namespace SistemaGimnasio
         {
             _dataAccessLayer.ReservarLugar(reserva, idUsuario);
         }
+
         public void CancelarReserva(Reserva reserva, int idUsuario)
         {
             _dataAccessLayer.CancelarReserva(reserva, idUsuario);

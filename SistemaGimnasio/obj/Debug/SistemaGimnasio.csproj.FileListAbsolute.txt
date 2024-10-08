@@ -12,3 +12,16 @@ C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.View.VistaAdministrador.resources
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.VistaSocio.resources
 C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.Login.resources
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\System.Data.SQLite.dll
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\System.Data.SQLite.xml
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.csproj.CopyComplete
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\SistemaGimnasio.exe.manifest
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\SistemaGimnasio.application
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.exe.manifest
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\obj\Debug\SistemaGimnasio.application
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\EntityFramework.dll
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\EntityFramework.xml
+C:\Users\user\Desktop\TP Programacion\SistemaGimnasio\SistemaGimnasio\bin\Debug\EntityFramework.SqlServer.xml
