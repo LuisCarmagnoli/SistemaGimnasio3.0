@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using SistemaGimnasio.View;
 
 namespace SistemaGimnasio
@@ -152,17 +152,17 @@ namespace SistemaGimnasio
             rol = null;
             idUsuario = 0;
 
-            using (SqlConnection connection = new SqlConnection("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SistemaGimnasio;Data Source=DESKTOP-PP0K0MS"))
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=SistemaGimnasioSQLite2.db"))
             {
                 string query = "SELECT Rol, ID_Usuario FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contrasena";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@usuario", usuario);
                     command.Parameters.AddWithValue("@contrasena", contrasena);
 
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    SQLiteDataReader reader = command.ExecuteReader();
 
                     if (reader.Read())
                     {
