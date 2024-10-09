@@ -14,14 +14,19 @@ namespace SistemaGimnasio.View
     public partial class VistaAdministrador : Form
     {
         private BusinessLogicLayer _businessLogicLayer;
+        private bool cerrarSesion = false;
+        private Timer timer;
 
         public VistaAdministrador()
         {
             InitializeComponent();
             _businessLogicLayer = new BusinessLogicLayer();
 
-            // Suscribir el evento CellClick
             gridClases.CellClick += gridClases_CellClick;
+
+            timer = new Timer();
+            timer.Interval = 200;
+            timer.Tick += Timer_Tick;
         }
 
         #region EVENTS
@@ -38,7 +43,8 @@ namespace SistemaGimnasio.View
 
         private void VistaAdministrador_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!cerrarSesion) 
+                Application.Exit();
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
@@ -151,8 +157,25 @@ namespace SistemaGimnasio.View
             List<Clase> clases = _businessLogicLayer.GetClases();
             gridClases.DataSource = clases;
         }
-
         #endregion
 
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            cerrarSesion = true;
+
+            this.Hide();
+
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+
+            Login loginForm = new Login();
+            loginForm.Show();
+
+            this.Close();
+        }
     }
 }

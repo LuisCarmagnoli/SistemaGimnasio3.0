@@ -56,6 +56,7 @@
             this.btnCancelarReserva = new System.Windows.Forms.Button();
             this.reservaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.claseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridReservas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reservaBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reservaBindingSource)).BeginInit();
@@ -274,11 +275,25 @@
             // 
             this.claseBindingSource.DataSource = typeof(SistemaGimnasio.Clase);
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(768, 313);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(100, 69);
+            this.btnCerrarSesion.TabIndex = 15;
+            this.btnCerrarSesion.Text = "Cerrar sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // VistaSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 390);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnCancelarReserva);
             this.Controls.Add(this.btnReservarLugar);
             this.Controls.Add(this.label2);
@@ -327,5 +342,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn horarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn capacidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn espaciosDisponiblesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

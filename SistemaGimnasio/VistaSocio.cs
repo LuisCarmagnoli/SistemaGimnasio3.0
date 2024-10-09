@@ -14,6 +14,8 @@ namespace SistemaGimnasio
     public partial class VistaSocio : Form
     {
         private BusinessLogicLayer _businessLogicLayer;
+        private bool cerrarSesion = false;
+        private Timer timer;
 
         private readonly int idUsuario;
 
@@ -24,8 +26,10 @@ namespace SistemaGimnasio
             _businessLogicLayer = new BusinessLogicLayer();
 
             // Suscribir el evento CellClick
-            gridReservas.CellClick += gridReservas_CellClick;
-
+            //gridReservas.CellClick += gridReservas_CellClick;
+            timer = new Timer();
+            timer.Interval = 200;
+            timer.Tick += Timer_Tick;
         }
 
         #region EVENTS
@@ -99,11 +103,6 @@ namespace SistemaGimnasio
             }
         }
 
-        private void VistaSocio_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void gridReservas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Permitir seleccionar la fila completa al hacer clic en cualquier celda
@@ -111,6 +110,12 @@ namespace SistemaGimnasio
             {
                 gridReservas.Rows[e.RowIndex].Selected = true;
             }
+        }
+
+        private void VistaSocio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!cerrarSesion)
+                Application.Exit();
         }
         #endregion
 
@@ -126,14 +131,34 @@ namespace SistemaGimnasio
             // Buscar la fila correspondiente a la reserva
             foreach (DataGridViewRow row in gridReservas.Rows)
             {
-                if (row.DataBoundItem is Reserva r && r.IdReserva == reserva.IdReserva) // Asegúrate de que ID es el identificador único de la reserva
+                if (row.DataBoundItem is Reserva r && r.IdReserva == reserva.IdReserva)
                 {
                     row.Selected = true;
-                    gridReservas.CurrentCell = row.Cells[0]; // Opcional: enfocar la primera celda de la fila
+                    gridReservas.CurrentCell = row.Cells[0];
                     break;
                 }
             }
         }
         #endregion
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            cerrarSesion = true;
+
+            this.Hide();
+
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+
+            Login loginForm = new Login();
+            loginForm.Show();
+
+            this.Close();
+        }
+
     }
 }

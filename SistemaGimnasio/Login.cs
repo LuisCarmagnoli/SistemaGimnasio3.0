@@ -124,21 +124,19 @@ namespace SistemaGimnasio
             string usuario = txtUser.Text;
             string contrasena = txtPass.Text;
 
-            // Llama a la función para autenticar
             if (Autenticar(usuario, contrasena, out string rol, out int idUsuario))
             {
-                // Si el usuario es válido, abrir la vista correspondiente
                 if (rol == "Administrador")
                 {
                     VistaAdministrador vistaAdministrador = new VistaAdministrador();
                     vistaAdministrador.Show();
-                    this.Hide(); // Opcional: Ocultar el formulario de login
+                    this.Hide(); //Ocultar el formulario de login
                 }
                 else if (rol == "Socio")
                 {
                     VistaSocio vistaSocio = new VistaSocio(idUsuario);
                     vistaSocio.Show();
-                    this.Hide(); // Opcional: Ocultar el formulario de login
+                    this.Hide(); //Ocultar el formulario de login
                 }
             }
             else
@@ -152,7 +150,7 @@ namespace SistemaGimnasio
             rol = null;
             idUsuario = 0;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=SistemaGimnasioSQLite2.db"))
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=|DataDirectory|SistemaGimnasioSQLite2.db;Version=3;"))
             {
                 string query = "SELECT Rol, ID_Usuario FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contrasena";
 

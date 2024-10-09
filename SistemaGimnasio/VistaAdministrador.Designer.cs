@@ -40,15 +40,16 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.gridClases = new System.Windows.Forms.DataGridView();
-            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idClaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreClaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreInstructorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.capacidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.espaciosDisponiblesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.claseBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.claseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridClases)).BeginInit();
@@ -79,6 +80,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.btnCerrarSesion);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnBorrar);
             this.panel2.Controls.Add(this.btnEditar);
@@ -173,14 +175,6 @@
             this.gridClases.TabIndex = 0;
             this.gridClases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClases_CellClick);
             // 
-            // Dias
-            // 
-            this.Dias.DataPropertyName = "Dias";
-            this.Dias.HeaderText = "Dias";
-            this.Dias.Name = "Dias";
-            this.Dias.ReadOnly = true;
-            this.Dias.Width = 140;
-            // 
             // idClaseDataGridViewTextBoxColumn
             // 
             this.idClaseDataGridViewTextBoxColumn.DataPropertyName = "IdClase";
@@ -201,6 +195,14 @@
             this.nombreInstructorDataGridViewTextBoxColumn.HeaderText = "NombreInstructor";
             this.nombreInstructorDataGridViewTextBoxColumn.Name = "nombreInstructorDataGridViewTextBoxColumn";
             this.nombreInstructorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Dias
+            // 
+            this.Dias.DataPropertyName = "Dias";
+            this.Dias.HeaderText = "Dias";
+            this.Dias.Name = "Dias";
+            this.Dias.ReadOnly = true;
+            this.Dias.Width = 140;
             // 
             // horarioDataGridViewTextBoxColumn
             // 
@@ -230,6 +232,19 @@
             // claseBindingSource
             // 
             this.claseBindingSource.DataSource = typeof(SistemaGimnasio.Clase);
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(801, 310);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(100, 69);
+            this.btnCerrarSesion.TabIndex = 16;
+            this.btnCerrarSesion.Text = "Cerrar sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // VistaAdministrador
             // 
@@ -275,5 +290,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn horarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn capacidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn espaciosDisponiblesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

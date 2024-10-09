@@ -18,39 +18,6 @@ namespace SistemaGimnasio
 
         public bool InsertClase(Clase clase)
         {
-            // Validar que el nombre de la clase esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreClase) || clase.NombreClase.Length < 3 || clase.NombreClase.Length > 50)
-            {
-                MessageBox.Show("El nombre de la clase debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar que el nombre del instructor esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreInstructor) || clase.NombreInstructor.Length < 3 || clase.NombreInstructor.Length > 50)
-            {
-                MessageBox.Show("El nombre del instructor debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar que los días estén entre 5 y 100 caracteres
-            if (string.IsNullOrWhiteSpace(clase.Dias) || clase.Dias.Length < 5 || clase.Dias.Length > 100)
-            {
-                MessageBox.Show("Los días deben tener entre 5 y 100 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!ValidarHorario(clase.Horario))
-            {
-                MessageBox.Show("Por favor, ingresa un horario válido en formato HH:MM:SS.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false; // Salir del método si el formato es incorrecto
-            }
-
-            // Validar que la capacidad sea un número entre 1 y 100
-            if (clase.Capacidad < 1 || clase.Capacidad > 100)
-            {
-                MessageBox.Show("La capacidad debe ser un número entre 1 y 100.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
 
             try
             {
@@ -77,7 +44,7 @@ namespace SistemaGimnasio
                 // Ejecutar el comando e obtener el ID de la nueva clase
                 int idClase = Convert.ToInt32(command.ExecuteScalar());
 
-                // 2. Obtener todos los usuarios
+                // Obtener todos los usuarios
                 string selectUsuariosQuery = "SELECT ID_Usuario FROM Usuarios;";
                 SQLiteCommand commandUsuarios = new SQLiteCommand(selectUsuariosQuery, connection);
 
@@ -90,7 +57,7 @@ namespace SistemaGimnasio
                 }
                 reader.Close();
 
-                // 3. Insertar reservas para todos los usuarios
+                // Insertar reservas para todos los usuarios
                 string insertReservaQuery = @"
                                             INSERT INTO Reservas (ID_Usuario, ID_Clase, Estado)
                                             VALUES (@ID_Usuario, @ID_Clase, 'No reservado');";
@@ -119,40 +86,6 @@ namespace SistemaGimnasio
 
         public bool UpdateClase(Clase clase)
         {
-            // Validar que el nombre de la clase esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreClase) || clase.NombreClase.Length < 3 || clase.NombreClase.Length > 50)
-            {
-                MessageBox.Show("El nombre de la clase debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar que el nombre del instructor esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreInstructor) || clase.NombreInstructor.Length < 3 || clase.NombreInstructor.Length > 50)
-            {
-                MessageBox.Show("El nombre del instructor debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar que los días estén entre 5 y 100 caracteres
-            if (string.IsNullOrWhiteSpace(clase.Dias) || clase.Dias.Length < 5 || clase.Dias.Length > 100)
-            {
-                MessageBox.Show("Los días deben tener entre 5 y 100 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!ValidarHorario(clase.Horario))
-            {
-                MessageBox.Show("Por favor, ingresa un horario válido en formato HH:MM:SS.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false; // Salir del método si el formato es incorrecto
-            }
-
-            // Validar que la capacidad sea un número entre 1 y 100
-            if (clase.Capacidad < 1 || clase.Capacidad > 100)
-            {
-                MessageBox.Show("La capacidad debe ser un número entre 1 y 100.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
             try
             {
                 connection.Open();
@@ -173,8 +106,6 @@ namespace SistemaGimnasio
                 command.Parameters.AddWithValue("@Dias", clase.Dias);
                 command.Parameters.AddWithValue("@Horario", clase.Horario);
                 command.Parameters.AddWithValue("@Capacidad", clase.Capacidad);
-                //command.Parameters.AddWithValue("@EspaciosDisponibles", clase.EspaciosDisponibles);
-
                 command.ExecuteNonQuery();
 
                 return true;
@@ -207,7 +138,6 @@ namespace SistemaGimnasio
 
                 SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.Parameters.AddWithValue("@IdClase", idClase);
-
                 command.ExecuteNonQuery();
             }
             catch (Exception)
@@ -283,11 +213,9 @@ namespace SistemaGimnasio
                         WHERE ID_Usuario = @idUsuario AND ID_Reserva = @idReserva";
 
                     SQLiteCommand command = new SQLiteCommand(query, connection);
-
                     command.Parameters.AddWithValue("@idUsuario", idUsuario);
                     command.Parameters.AddWithValue("@idReserva", reserva.IdReserva);
                     command.Parameters.AddWithValue("@Estado", reserva.Estado);
-
                     command.ExecuteNonQuery();
 
                     string updateClaseQuery = @"
@@ -312,13 +240,6 @@ namespace SistemaGimnasio
             {
                 MessageBox.Show("No se puede cancelar la reserva ya que no has reservado un lugar aún.");
             }
-        }
-
-        private bool ValidarHorario(string horario)
-        {
-            // Expresión regular para validar el formato HH:MM:SS
-            string pattern = @"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$";
-            return Regex.IsMatch(horario, pattern);
         }
 
         public List<Clase> SearchClases(string searchTerm)
@@ -441,7 +362,6 @@ namespace SistemaGimnasio
                                 FROM Clases";
 
                 SQLiteCommand command = new SQLiteCommand(query, connection);
-
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
