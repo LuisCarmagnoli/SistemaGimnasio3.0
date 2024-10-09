@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
   <asmv1:assemblyIdentity name="SistemaGimnasio.exe" version="1.0.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="gimnasioIcono.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="SistemaGimnasio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -66,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaGimnasio.exe" size="122328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaGimnasio.exe" size="130008">
       <assemblyIdentity name="SistemaGimnasio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>q3xOG1Joee81ujX7t/r1I5ZYY17gtp1taWZur5ulrEg=</dsig:DigestValue>
+        <dsig:DigestValue>Fyr3i54pfvqpAfiBEIy2BB5tYATcVv8mK78q0XiVcZg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -113,6 +114,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="gimnasioIcono.ico" size="7537">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xaVfTsEfuYlfqzfhQLY51k2STL4dB16FqqzPyA8TH9c=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="SistemaGimnasio.exe.config" size="1530">
     <hash>
       <dsig:Transforms>
