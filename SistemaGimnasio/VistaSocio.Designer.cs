@@ -278,6 +278,7 @@
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.InfoText;
             this.btnCerrarSesion.Location = new System.Drawing.Point(768, 313);
@@ -302,6 +303,7 @@
             this.Controls.Add(this.gridReservas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VistaSocio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Gimnasio - Vista Socio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VistaSocio_FormClosing);
             this.Load += new System.EventHandler(this.VistaSocio_Load);

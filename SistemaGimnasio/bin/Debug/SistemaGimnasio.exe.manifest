@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaGimnasio.exe" size="107992">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaGimnasio.exe" size="122328">
       <assemblyIdentity name="SistemaGimnasio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cu+ZzEnjw71dr2ojoioQEZocQHVBFmEALl9nO5RN7rU=</dsig:DigestValue>
+        <dsig:DigestValue>q3xOG1Joee81ujX7t/r1I5ZYY17gtp1taWZur5ulrEg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

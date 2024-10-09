@@ -39,7 +39,19 @@ namespace SistemaGimnasio.View
             IdClase = clase.IdClase;
         }
 
+        #region EVENTS
+
+        private void ClaseDetailsView_Load(object sender, EventArgs e)
+        {
+            btnCancelar.Select();
+            EstablecerPlaceHolders();
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -53,8 +65,102 @@ namespace SistemaGimnasio.View
             }
         }
 
+        private void txtNombreClase_Enter(object sender, EventArgs e)
+        {
+            if (txtNombreClase.Text == "Nombre de la clase")
+            {
+                txtNombreClase.Text = "";
+                txtNombreClase.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtNombreClase_Leave(object sender, EventArgs e)
+        {
+            if (txtNombreClase.Text == "")
+            {
+                txtNombreClase.Text = "Nombre de la clase";
+                txtNombreClase.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void txtNombreInstructor_Enter(object sender, EventArgs e)
+        {
+            if (txtNombreInstructor.Text == "Nombre del instructor")
+            {
+                txtNombreInstructor.Text = "";
+                txtNombreInstructor.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtNombreInstructor_Leave(object sender, EventArgs e)
+        {
+            if (txtNombreInstructor.Text == "")
+            {
+                txtNombreInstructor.Text = "Nombre del instructor";
+                txtNombreInstructor.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void txtDias_Enter(object sender, EventArgs e)
+        {
+            if (txtDias.Text == "Dias")
+            {
+                txtDias.Text = "";
+                txtDias.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtDias_Leave(object sender, EventArgs e)
+        {
+            if (txtDias.Text == "")
+            {
+                txtDias.Text = "Dias";
+                txtDias.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void txtHorario_Enter(object sender, EventArgs e)
+        {
+            if (txtHorario.Text == "Horario")
+            {
+                txtHorario.Text = "";
+                txtHorario.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtHorario_Leave(object sender, EventArgs e)
+        {
+            if (txtHorario.Text == "")
+            {
+                txtHorario.Text = "Horario";
+                txtHorario.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void txtCapacidad_Enter(object sender, EventArgs e)
+        {
+            if (txtCapacidad.Text == "Capacidad")
+            {
+                txtCapacidad.Text = "";
+                txtCapacidad.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtCapacidad_Leave(object sender, EventArgs e)
+        {
+            if (txtCapacidad.Text == "")
+            {
+                txtCapacidad.Text = "Capacidad";
+                txtCapacidad.ForeColor = Color.DimGray;
+            }
+        }
+        #endregion
+
         private bool GuardarClase()
         {
+            // Limpiar los mensajes de error antes de validar
+            LimpiarMensajesError();
+
             try
             {
                 Clase clase = new Clase
@@ -64,7 +170,7 @@ namespace SistemaGimnasio.View
                     NombreInstructor = txtNombreInstructor.Text,
                     Dias = txtDias.Text,
                     Horario = txtHorario.Text,
-                    Capacidad = int.Parse(txtCapacidad.Text)
+                    Capacidad = 0 // Inicializamos con 0; se asignará después de validar
                 };
 
                 if (ValidarFormatoCamposDeTexto(clase))
@@ -76,53 +182,76 @@ namespace SistemaGimnasio.View
                 {
                     return false;
                 }
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Manejo de errores en caso de excepciones
+                //lblErrorGeneral.Text = "Ocurrió un error: " + ex.Message;
                 return false;
             }
         }
 
         public bool ValidarFormatoCamposDeTexto(Clase clase)
         {
+            // Limpiar los mensajes de error antes de validar
+            LimpiarMensajesError();
+
+            bool hayError = false;
+
             // Validar que el nombre de la clase esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreClase) || clase.NombreClase.Length < 3 || clase.NombreClase.Length > 50)
+            if (string.IsNullOrWhiteSpace(clase.NombreClase) || clase.NombreClase.Length < 3 || clase.NombreClase.Length > 50 || !ValidarCampoDiferenteDePlaceholder(txtNombreClase))
             {
-                MessageBox.Show("El nombre de la clase debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                lblErrorNombreClase.Text = "El nombre de la clase debe tener entre 3 y 50 caracteres.";
+                hayError = true;
             }
 
             // Validar que el nombre del instructor esté entre 3 y 50 caracteres
-            if (string.IsNullOrWhiteSpace(clase.NombreInstructor) || clase.NombreInstructor.Length < 3 || clase.NombreInstructor.Length > 50)
+            if (string.IsNullOrWhiteSpace(clase.NombreInstructor) || clase.NombreInstructor.Length < 3 || clase.NombreInstructor.Length > 50 || !ValidarCampoDiferenteDePlaceholder(txtNombreInstructor))
             {
-                MessageBox.Show("El nombre del instructor debe tener entre 3 y 50 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                lblErrorNombreInstructor.Text = "El nombre del instructor debe tener entre 3 y 50 caracteres.";
+                hayError = true;
             }
 
             // Validar que los días estén entre 5 y 100 caracteres
             if (string.IsNullOrWhiteSpace(clase.Dias) || clase.Dias.Length < 5 || clase.Dias.Length > 100)
             {
-                MessageBox.Show("Los días deben tener entre 5 y 100 caracteres.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                lblErrorDias.Text = "Los días deben tener entre 5 y 100 caracteres.";
+                hayError = true;
             }
 
             // Validar que el formato de horario sea HH:MM:SS
             if (!ValidarHorario(clase.Horario))
             {
-                MessageBox.Show("Por favor, ingresa un horario válido en formato HH:MM:SS.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                lblErrorHorario.Text = "Por favor, ingresa un horario válido en formato HH:MM:SS.";
+                hayError = true;
             }
 
-            // Validar que la capacidad no esté vacía y sea un número entre 1 y 100
-            if (!int.TryParse(clase.Capacidad.ToString(), out int capacidad) || capacidad < 1 || capacidad > 100)
+            // Validar capacidad
+            if (string.IsNullOrWhiteSpace(txtCapacidad.Text))
             {
-                MessageBox.Show("La capacidad debe ser un número entero entre 1 y 100.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                lblErrorCapacidad.Text = "El campo capacidad no puede estar vacío.";
+                hayError = true;
+            }
+            else if (!int.TryParse(txtCapacidad.Text, out int capacidad) || capacidad < 1 || capacidad > 100)
+            {
+                lblErrorCapacidad.Text = "La capacidad debe ser un número entero entre 1 y 100.";
+                hayError = true;
+            }
+            else
+            {
+                clase.Capacidad = capacidad; // Asignar el valor validado a la clase
             }
 
+            return !hayError; // Retorna verdadero si no hay errores
+        }
+
+        public bool ValidarCampoDiferenteDePlaceholder(TextBox textBox)
+        {
+            // Ignorar la validación si el texto es igual al placeholder
+            if (textBox.Text == textBox.Tag.ToString())
+            {
+                return false; // No es válido
+            }
             return true;
         }
 
@@ -131,6 +260,50 @@ namespace SistemaGimnasio.View
             // Expresión regular para validar el formato HH:MM:SS
             string pattern = @"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$";
             return Regex.IsMatch(horario, pattern);
+        }
+
+        private void LimpiarMensajesError()
+        {
+            // Limpia los textos de los labels de error
+            lblErrorNombreClase.Text = "";
+            lblErrorNombreInstructor.Text = "";
+            lblErrorDias.Text = "";
+            lblErrorHorario.Text = "";
+            lblErrorCapacidad.Text = "";
+        }
+
+        private void EstablecerPlaceHolders()
+        {
+            // Establecer los placeholders si los TextBox están vacíos
+            if (string.IsNullOrWhiteSpace(txtNombreClase.Text))
+            {
+                txtNombreClase.Text = "Nombre de la clase";
+                txtNombreClase.ForeColor = Color.DimGray;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNombreInstructor.Text))
+            {
+                txtNombreInstructor.Text = "Nombre del instructor";
+                txtNombreInstructor.ForeColor = Color.DimGray;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDias.Text))
+            {
+                txtDias.Text = "Dias";
+                txtDias.ForeColor = Color.DimGray;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtHorario.Text))
+            {
+                txtHorario.Text = "Horario";
+                txtHorario.ForeColor = Color.DimGray;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCapacidad.Text))
+            {
+                txtCapacidad.Text = "Capacidad";
+                txtCapacidad.ForeColor = Color.DimGray;
+            }
         }
     }
 }
